@@ -1,0 +1,56 @@
+.container {
+    margin-top: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.button-container {
+    button {
+        margin-left: 10px;
+    }
+}
+
+.table {
+    width: 100%;
+    table-layout: fixed;
+
+    th,
+    td {
+        padding: 12px;
+        vertical-align: middle;
+        word-wrap: break-word;
+    }
+
+    th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .title-column,
+    .image-column,
+    .privacy-column {
+        width: 20%;
+    }
+
+    .collaborators-column {
+        width: 40%;
+    }
+}
+
+.pin-image {
+    max-width: 80px;
+    max-height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}

@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <h4 class="modal-title">Create Customer</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Name*</label>
+            <input type="text" class="form-control" id="name" formControlName="name"
+                [class.is-invalid]="customerForm.get('name')?.invalid && customerForm.get('name')?.touched">
+            <div *ngIf="customerForm.get('name')?.invalid && customerForm.get('name')?.touched"
+                class="invalid-feedback">
+                Name is required.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email*</label>
+            <input type="email" class="form-control" id="email" formControlName="email"
+                [class.is-invalid]="customerForm.get('email')?.invalid && customerForm.get('email')?.touched">
+            <div *ngIf="customerForm.get('email')?.invalid && customerForm.get('email')?.touched"
+                class="invalid-feedback">
+                <div *ngIf="customerForm.get('email')?.errors?.['required']">Email is required.</div>
+                <div *ngIf="customerForm.get('email')?.errors?.['email']">Invalid email format.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="region">Region*</label>
+            <ngx-select formControlName="region" [allowClear]="true" [items]="regions" optionValueField="optionId"
+                optionTextField="optionTitle" placeholder="Select Region" (selectionChanges)="fetchCountries()"
+                [class.is-invalid]="customerForm.get('region')?.invalid && customerForm.get('region')?.touched">
+            </ngx-select>
+            <div *ngIf="customerForm.get('region')?.invalid && customerForm.get('region')?.touched"
+                class="invalid-feedback">
+                Region is required.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="country">Country*</label>
+            <ngx-select formControlName="country" [allowClear]="true" [items]="countries" optionValueField="optionId"
+                optionTextField="optionTitle" placeholder="Select Country"
+                [class.is-invalid]="customerForm.get('country')?.invalid && customerForm.get('country')?.touched">
+            </ngx-select>
+            <div *ngIf="customerForm.get('country')?.invalid && customerForm.get('country')?.touched"
+                class="invalid-feedback">
+                Country is required.
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!customerForm.valid" (click)="onSubmit()">Create Customer</button>
+</div>
